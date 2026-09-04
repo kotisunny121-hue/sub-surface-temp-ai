@@ -339,12 +339,12 @@ export const PatternAnalysisPage: React.FC = () => {
                   {correlationMatrix.map((row) => (
                     <tr key={row.feature} className="hover:bg-slate-50/50">
                       <td className="p-2.5 text-left font-sans font-bold text-slate-900">{row.feature}</td>
-                      <td className={`p-2.5 rounded ${getCorrColor(row.sst)}`}>{row.sst.toFixed(2)}</td>
-                      <td className={`p-2.5 rounded ${getCorrColor(row.ssh)}`}>{row.ssh.toFixed(2)}</td>
-                      <td className={`p-2.5 rounded ${getCorrColor(row.sss)}`}>{row.sss.toFixed(2)}</td>
-                      <td className={`p-2.5 rounded ${getCorrColor(row.wind)}`}>{row.wind.toFixed(2)}</td>
-                      <td className={`p-2.5 rounded ${getCorrColor(row.sub100m)}`}>{row.sub100m.toFixed(2)}</td>
-                      <td className={`p-2.5 rounded ${getCorrColor(row.sub500m)}`}>{row.sub500m.toFixed(2)}</td>
+                      <td className={`p-2.5 rounded ${getCorrColor(row.sst)}`}>{(row.sst ?? 0).toFixed(2)}</td>
+                      <td className={`p-2.5 rounded ${getCorrColor(row.ssh)}`}>{(row.ssh ?? 0).toFixed(2)}</td>
+                      <td className={`p-2.5 rounded ${getCorrColor(row.sss)}`}>{(row.sss ?? 0).toFixed(2)}</td>
+                      <td className={`p-2.5 rounded ${getCorrColor(row.wind)}`}>{(row.wind ?? 0).toFixed(2)}</td>
+                      <td className={`p-2.5 rounded ${getCorrColor(row.sub100m)}`}>{(row.sub100m ?? 0).toFixed(2)}</td>
+                      <td className={`p-2.5 rounded ${getCorrColor(row.sub500m)}`}>{(row.sub500m ?? 0).toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>

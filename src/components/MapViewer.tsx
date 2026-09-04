@@ -75,13 +75,13 @@ export const MapViewer: React.FC<Props> = ({
     // Bay of Bengal Region boundary
     const bounds: L.LatLngBoundsExpression = [[5.0, 80.0], [22.0, 100.0]];
     L.rectangle(bounds, {
-      color: '#1A1A1A',
+      color: '#0284C7',
       weight: 2,
-      dashArray: '4, 4',
+      dashArray: '5, 5',
       fill: false
     }).addTo(map).bindTooltip('Bay of Bengal Target Domain (5°N–22°N, 80°E–100°E)', {
       sticky: true,
-      className: 'text-xs font-mono font-bold'
+      className: 'text-xs font-semibold'
     });
 
     // Layer groups
@@ -160,7 +160,7 @@ export const MapViewer: React.FC<Props> = ({
           { latitude: lat, longitude: lon, date: selectedDate, targetDepth: selectedDepth },
           dataMode
         );
-        const temp = pred.predictedTemperatureAtTarget !== undefined ? pred.predictedTemperatureAtTarget : pred.profile[0].temperature;
+        const temp = pred.predictedTemperatureAtTarget !== undefined ? pred.predictedTemperatureAtTarget : (pred.profile?.[0]?.temperature ?? 28.0);
         const color = getTempColor(temp);
 
         const bounds: L.LatLngBoundsExpression = [
@@ -185,7 +185,7 @@ export const MapViewer: React.FC<Props> = ({
           `<div>
             <div class="font-bold text-xs">Grid: ${lat.toFixed(2)}°N, ${lon.toFixed(2)}°E</div>
             <div class="text-xs">Depth: <span class="font-bold">${selectedDepth}m</span></div>
-            <div class="text-xs">Temp: <span class="font-bold" style="color:${color}">${temp.toFixed(2)} °C</span></div>
+            <div class="text-xs">Temp: <span class="font-bold" style="color:${color}">${(temp ?? 28.0).toFixed(2)} °C</span></div>
             <div class="text-[10px] text-slate-500 mt-1">Click cell to analyze profile</div>
           </div>`,
           { sticky: true }
@@ -202,6 +202,8 @@ export const MapViewer: React.FC<Props> = ({
     argoLayerRef.current.clearLayers();
 
     argoFloats.forEach((f) => {
+      const fLat = f.lat ?? f.latitude ?? 14.0;
+      const fLon = f.lon ?? f.longitude ?? 88.0;
       const argoIcon = L.divIcon({
         className: 'argo-float-pin',
         html: `
@@ -213,14 +215,14 @@ export const MapViewer: React.FC<Props> = ({
         iconAnchor: [12, 12]
       });
 
-      const marker = L.marker([f.lat, f.lon], { icon: argoIcon });
+      const marker = L.marker([fLat, fLon], { icon: argoIcon });
       marker.bindPopup(`
         <div class="p-1 space-y-1 text-xs">
           <div class="font-bold text-emerald-800 flex items-center gap-1">
             <span>ARGO Float WMO ${f.wmo_id}</span>
             <span class="bg-emerald-100 text-emerald-900 text-[9px] px-1 rounded">REAL DATA</span>
           </div>
-          <div><strong>Location:</strong> ${f.lat}°N, ${f.lon}°E (${f.region})</div>
+          <div><strong>Location:</strong> ${fLat.toFixed(2)}°N, ${fLon.toFixed(2)}°E (${f.region})</div>
           <div><strong>Date:</strong> ${f.date} &bull; Cycle #${f.cycle_number}</div>
           <div><strong>Surface Temp (CTD):</strong> ${f.sst_observed} °C</div>
           <div><strong>Salinity:</strong> ${f.sss_observed} PSU</div>
@@ -229,7 +231,7 @@ export const MapViewer: React.FC<Props> = ({
       `);
 
       marker.on('click', () => {
-        onSelectLocation(f.lat, f.lon);
+        onSelectLocation(fLat, fLon);
       });
 
       argoLayerRef.current?.addLayer(marker);
@@ -335,65 +337,65 @@ export const MapViewer: React.FC<Props> = ({
   }, [showOscar, showAscat, showCcmp, oscarData, ascatData, ccmpData, selectedDate, dataMode]);
 
   return (
-    <div className="relative w-full h-[520px] overflow-hidden border-2 border-[#1A1A1A]">
+    <div className="relative w-full h-[520px] overflow-hidden rounded-xl border border-slate-200 shadow-sm">
       <div ref={mapContainerRef} className="w-full h-full z-0" />
 
-      {/* Floating Geometric Legend & Map Controls Overlay */}
-      <div className="absolute top-3 right-3 z-10 bg-white border-2 border-[#1A1A1A] p-3 text-xs space-y-2 max-w-[220px]">
-        <div className="font-bold font-mono text-[#1A1A1A] border-b-2 border-[#1A1A1A] pb-1.5 flex justify-between items-center">
-          <span className="uppercase text-[10px] tracking-wider">DEPTH: {selectedDepth}M</span>
-          <span className="text-[9px] bg-[#1A1A1A] text-white px-1 py-0.5">0.25° GRID</span>
+      {/* Floating Legend & Map Controls Overlay */}
+      <div className="absolute top-3 right-3 z-10 bg-white/95 backdrop-blur-xs border border-slate-200 rounded-xl p-3 text-xs space-y-2.5 max-w-[220px] shadow-md">
+        <div className="font-bold text-[#0F172A] border-b border-slate-100 pb-1.5 flex justify-between items-center">
+          <span className="uppercase text-[11px] tracking-wider text-slate-700">Depth: {selectedDepth}m</span>
+          <span className="text-[10px] bg-sky-50 text-[#0284C7] border border-sky-200 px-1.5 py-0.5 rounded font-semibold">0.25° GRID</span>
         </div>
 
         {/* Temperature Gradient Bar */}
         <div>
-          <div className="flex justify-between text-[9px] font-mono text-[#444] mb-1 font-semibold">
-            <span>&lt;4°C ABYSS</span>
-            <span>&gt;29°C WARM</span>
+          <div className="flex justify-between text-[10px] text-slate-500 mb-1 font-medium">
+            <span>&lt;4°C Abyss</span>
+            <span>&gt;29°C Warm</span>
           </div>
-          <div className="h-2 w-full bg-gradient-to-r from-indigo-950 via-blue-600 via-emerald-500 via-amber-400 to-red-600 border border-[#1A1A1A]"></div>
+          <div className="h-2 w-full rounded-full bg-gradient-to-r from-indigo-950 via-blue-600 via-emerald-500 via-amber-400 to-red-600 border border-slate-200/50"></div>
         </div>
 
         {/* Map Marker Legend */}
-        <div className="space-y-1.5 pt-1 text-[10px] font-mono">
-          <div className="flex items-center gap-2 text-[#1A1A1A]">
-            <span className="w-3.5 h-3.5 bg-red-600 text-white flex items-center justify-center text-[8px] font-bold border border-[#1A1A1A]">★</span>
-            <span className="font-bold">PROBE COORDINATE</span>
+        <div className="space-y-1.5 pt-1 text-xs">
+          <div className="flex items-center gap-2 text-slate-700">
+            <span className="w-3.5 h-3.5 rounded-full bg-red-600 text-white flex items-center justify-center text-[8px] font-bold">★</span>
+            <span className="font-semibold text-[11px]">Selected Probe</span>
           </div>
-          <div className="flex items-center gap-2 text-[#1A1A1A]">
-            <span className="w-3.5 h-3.5 bg-emerald-600 text-white flex items-center justify-center text-[8px] font-bold border border-[#1A1A1A]">A</span>
-            <span className="font-bold">ARGO CTD (REAL)</span>
+          <div className="flex items-center gap-2 text-slate-700">
+            <span className="w-3.5 h-3.5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[8px] font-bold">A</span>
+            <span className="font-semibold text-[11px]">ARGO CTD Float</span>
           </div>
         </div>
 
         {/* Active Vector Indicators */}
         {dataMode === 'real_plus_synthetic' && (
-          <div className="pt-2 border-t-2 border-[#1A1A1A] space-y-1 text-[9px] font-mono font-bold">
+          <div className="pt-2 border-t border-slate-100 space-y-1 text-[10px] font-semibold">
             {showOscar && (
-              <div className="flex items-center gap-1.5 text-sky-900">
-                <span className="w-2 h-1 bg-sky-700"></span>
-                <span>OSCAR CURRENTS [DEMO]</span>
+              <div className="flex items-center gap-1.5 text-sky-700">
+                <span className="w-2 h-1 rounded bg-sky-600"></span>
+                <span>OSCAR Currents (Demo)</span>
               </div>
             )}
             {showAscat && (
-              <div className="flex items-center gap-1.5 text-orange-900">
-                <span className="w-2 h-1 bg-orange-700"></span>
-                <span>ASCAT-C WINDS [DEMO]</span>
+              <div className="flex items-center gap-1.5 text-orange-700">
+                <span className="w-2 h-1 rounded bg-orange-600"></span>
+                <span>ASCAT-C Winds (Demo)</span>
               </div>
             )}
             {showCcmp && (
-              <div className="flex items-center gap-1.5 text-purple-900">
-                <span className="w-2 h-1 bg-purple-700"></span>
-                <span>CCMP 10M WINDS [DEMO]</span>
+              <div className="flex items-center gap-1.5 text-purple-700">
+                <span className="w-2 h-1 rounded bg-purple-600"></span>
+                <span>CCMP 10m Winds (Demo)</span>
               </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Bottom Hint - Geometric Style */}
-      <div className="absolute bottom-3 left-3 z-10 bg-[#1A1A1A] text-white text-[10px] font-mono tracking-wider px-3 py-1.5 border border-white/30 pointer-events-none uppercase">
-        Click any coordinate cell or ocean location to reposition sensor probe
+      {/* Bottom Hint */}
+      <div className="absolute bottom-3 left-3 z-10 bg-[#0F172A]/90 backdrop-blur-xs text-white text-[11px] font-medium px-3 py-1.5 rounded-lg border border-slate-700 shadow-md pointer-events-none">
+        Click any coordinate or ocean cell to reposition sensor probe
       </div>
     </div>
   );

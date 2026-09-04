@@ -60,7 +60,8 @@ export function predictSubsurfaceTemperature(
       depth,
       temperature: temp,
       confidenceLow: Number((temp - confidenceMargin).toFixed(2)),
-      confidenceHigh: Number((temp + confidenceMargin).toFixed(2))
+      confidenceHigh: Number((temp + confidenceMargin).toFixed(2)),
+      uncertainty: confidenceMargin
     };
   });
 
@@ -68,6 +69,14 @@ export function predictSubsurfaceTemperature(
   if (targetDepth !== undefined) {
     targetTemp = Number(calculateTempAtDepth(targetDepth).toFixed(2));
   }
+
+  const surfaceInputs = {
+    sst,
+    sss,
+    ssh,
+    windSpeed: dataMode === 'real_plus_synthetic' ? windSpeed : undefined,
+    currentSpeed: dataMode === 'real_plus_synthetic' ? currentSpeed : undefined
+  };
 
   return {
     modelName: 'ConvFormer-Ocean (CNN + Transformer)',
@@ -78,6 +87,7 @@ export function predictSubsurfaceTemperature(
     date,
     targetDepth,
     predictedTemperatureAtTarget: targetTemp,
+    uncertaintyAtTarget: targetDepth !== undefined ? (targetDepth < 200 ? 0.32 : targetDepth < 1000 ? 0.24 : 0.18) : 0.28,
     profile,
     surfaceConditions: {
       sst,
@@ -87,6 +97,7 @@ export function predictSubsurfaceTemperature(
       windSpeed: dataMode === 'real_plus_synthetic' ? windSpeed : undefined,
       currentSpeed: dataMode === 'real_plus_synthetic' ? currentSpeed : undefined
     },
+    surfaceInputs,
     confidenceScore: 0.92,
     timestamp: new Date().toISOString()
   };

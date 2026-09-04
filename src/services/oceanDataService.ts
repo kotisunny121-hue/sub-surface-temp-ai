@@ -117,7 +117,7 @@ export function getDeterministicSurfaceConditions(lat: number, lon: number, date
   };
 }
 
-function getFallbackArgoFloats(): ArgoFloat[] {
+export function getFallbackArgoFloats(): ArgoFloat[] {
   return [
     {
       wmo_id: "2902695",

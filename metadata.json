@@ -2,5 +2,7 @@
   "name": "Subsurface Ocean Temperature Prediction",
   "description": "AI-based Subsurface Ocean Temperature Prediction Pipeline & ConvFormer Architecture for the Bay of Bengal",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

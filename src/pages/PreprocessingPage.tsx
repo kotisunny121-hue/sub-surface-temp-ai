@@ -32,8 +32,14 @@ export const PreprocessingPage: React.FC = () => {
       {/* Header */}
       <div className="border-b border-slate-200 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-            <Layers className="w-6 h-6 text-blue-600" />
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="badge-real">STAGE 05 / 05 READY</span>
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              BAY OF BENGAL 0.25° REGRIDDING
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight flex items-center gap-2.5">
+            <Layers className="w-7 h-7 text-[#0284C7]" />
             Data Preprocessing & Grid Alignment Pipeline
           </h1>
           <p className="text-sm text-slate-600 mt-1">
@@ -44,33 +50,33 @@ export const PreprocessingPage: React.FC = () => {
         <button
           onClick={handleRerun}
           disabled={isProcessing}
-          className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-50 shadow-sm transition-all self-start sm:self-auto cursor-pointer"
+          className="btn-secondary px-4 py-2 text-xs font-semibold shadow-sm flex items-center gap-2 self-start sm:self-auto cursor-pointer"
         >
-          <RefreshCw className={`w-3.5 h-3.5 ${isProcessing ? 'animate-spin text-cyan-600' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 ${isProcessing ? 'animate-spin text-[#0284C7]' : 'text-slate-500'}`} />
           {isProcessing ? 'Re-executing Pipeline...' : 'Re-run QC Pipeline'}
         </button>
       </div>
 
       {/* Pipeline Summary Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-semibold text-slate-500 uppercase">Raw Input Ingested</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">152,400</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="card-surface p-4 border border-[#E2E8F0] shadow-sm bg-white">
+          <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Raw Input Ingested</span>
+          <div className="text-2xl font-black text-[#0F172A] mt-1">152,400</div>
           <p className="text-[11px] text-slate-500 mt-0.5">Multi-source NetCDF & CSV</p>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-semibold text-slate-500 uppercase">QC Acceptance Rate</span>
-          <div className="text-2xl font-black text-emerald-600 mt-1">98.31%</div>
+        <div className="card-surface p-4 border border-[#E2E8F0] shadow-sm bg-white">
+          <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">QC Acceptance Rate</span>
+          <div className="text-2xl font-black text-emerald-700 mt-1">98.31%</div>
           <p className="text-[11px] text-slate-500 mt-0.5">149,820 valid records</p>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-semibold text-slate-500 uppercase">BoB 0.25° Active Cells</span>
-          <div className="text-2xl font-black text-blue-600 mt-1">3,942</div>
+        <div className="card-surface p-4 border border-[#E2E8F0] shadow-sm bg-white">
+          <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">BoB 0.25° Active Cells</span>
+          <div className="text-2xl font-black text-[#0284C7] mt-1">3,942</div>
           <p className="text-[11px] text-slate-500 mt-0.5">1,647 land masked</p>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-semibold text-slate-500 uppercase">Standardized Channels</span>
-          <div className="text-2xl font-black text-cyan-700 mt-1">6 Channels</div>
+        <div className="card-surface p-4 border border-[#E2E8F0] shadow-sm bg-white">
+          <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Standardized Channels</span>
+          <div className="text-2xl font-black text-[#1E3A8A] mt-1">6 Channels</div>
           <p className="text-[11px] text-slate-500 mt-0.5">Z-score normalized</p>
         </div>
       </div>

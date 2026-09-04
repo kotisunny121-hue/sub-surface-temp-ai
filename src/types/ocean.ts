@@ -20,6 +20,7 @@ export interface DepthTemperaturePoint {
   temperature: number;
   confidenceLow?: number;
   confidenceHigh?: number;
+  uncertainty?: number;
 }
 
 export interface ArgoProfilePoint {
@@ -36,6 +37,8 @@ export interface ArgoFloat {
   date: string;
   lat: number;
   lon: number;
+  latitude?: number;
+  longitude?: number;
   region: string;
   cycle_number: number;
   sst_observed: number;
@@ -68,12 +71,20 @@ export interface PredictionOutput {
   date: string;
   targetDepth?: number;
   predictedTemperatureAtTarget?: number;
+  uncertaintyAtTarget?: number;
   profile: DepthTemperaturePoint[];
   surfaceConditions: {
     sst: number;
     sss: number;
     ssh: number;
     mld: number;
+    windSpeed?: number;
+    currentSpeed?: number;
+  };
+  surfaceInputs?: {
+    sst: number;
+    sss?: number;
+    ssh?: number;
     windSpeed?: number;
     currentSpeed?: number;
   };

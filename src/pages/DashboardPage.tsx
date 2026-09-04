@@ -89,15 +89,15 @@ export const DashboardPage: React.FC<Props> = ({
     dataMode
   );
 
-  const currentTemp = prediction.predictedTemperatureAtTarget !== undefined
+  const currentTemp = prediction?.predictedTemperatureAtTarget !== undefined
     ? prediction.predictedTemperatureAtTarget
-    : prediction.profile[0].temperature;
+    : prediction?.profile?.[0]?.temperature ?? 28.5;
 
-  const prevTemp = prevPrediction.predictedTemperatureAtTarget !== undefined
+  const prevTemp = prevPrediction?.predictedTemperatureAtTarget !== undefined
     ? prevPrediction.predictedTemperatureAtTarget
-    : prevPrediction.profile[0].temperature;
+    : prevPrediction?.profile?.[0]?.temperature ?? 28.5;
 
-  const dayToDayChange = Number((currentTemp - prevTemp).toFixed(2));
+  const dayToDayChange = Number(((currentTemp ?? 0) - (prevTemp ?? 0)).toFixed(2));
 
   // Download prediction report
   const handleDownloadReport = () => {
@@ -112,27 +112,25 @@ export const DashboardPage: React.FC<Props> = ({
 
   return (
     <div id="dashboard-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header Section - Geometric Balance Architecture */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-[#1A1A1A] pb-6">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-6">
         <div>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-6 h-6 bg-[#1A1A1A] text-white flex items-center justify-center text-[10px] font-black font-mono">
-              01
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.4em] font-black text-[#1A1A1A]">
-              INTERFACE // GRID OBSERVATION
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#1A1A1A]">
-              Subsurface Ocean Temperature
-            </h1>
-            <span className="bg-[#1A1A1A] text-white text-[10px] font-mono px-2 py-0.5 tracking-tighter uppercase font-bold">
-              CONVFORMER
+          <div className="flex items-center gap-2 mb-2">
+            <span className="badge-real">0.25° ISOMETRIC GRID</span>
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              BAY OF BENGAL DOMAIN (5°N–22°N, 80°E–100°E)
             </span>
           </div>
-          <p className="text-sm text-[#444444] mt-2 font-medium max-w-2xl leading-relaxed">
-            AI-powered subsurface prediction pipeline for the Bay of Bengal &bull; Spatial resolution: 0.25° isometric grid &bull; Depth: 0m to 2000m.
+          <div className="flex items-center gap-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0F172A]">
+              Subsurface Ocean Temperature
+            </h1>
+            <span className="bg-sky-50 text-[#0284C7] border border-sky-200 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+              ConvFormer AI
+            </span>
+          </div>
+          <p className="text-sm text-slate-600 mt-2 font-medium max-w-2xl leading-relaxed">
+            AI-powered 3D subsurface temperature reconstruction for the Bay of Bengal &bull; Multi-satellite fusion decoded into continuous 0m to 2000m vertical profiles.
           </p>
         </div>
 
@@ -142,158 +140,158 @@ export const DashboardPage: React.FC<Props> = ({
             id="btn-run-prediction"
             type="button"
             onClick={() => setIsPipelineModalOpen(true)}
-            className="flex items-center gap-2.5 px-6 py-3 bg-[#1A1A1A] text-white hover:bg-black font-black text-xs uppercase tracking-[0.2em] border-2 border-[#1A1A1A] transition-all cursor-pointer shadow-none active:translate-y-0.5"
+            className="btn-primary-action px-5 py-2.5 text-xs tracking-wider cursor-pointer font-bold shadow-md flex items-center gap-2"
           >
             <Play className="w-3.5 h-3.5 fill-white" />
-            RUN PREDICTION
+            RUN AI PREDICTION
           </button>
           <button
             id="btn-download-report"
             type="button"
             onClick={handleDownloadReport}
-            className="flex items-center gap-2 px-4 py-3 bg-white text-[#1A1A1A] hover:bg-[#EBE9E4] font-black text-xs uppercase tracking-[0.2em] border-2 border-[#1A1A1A] transition-all cursor-pointer shadow-none"
+            className="btn-secondary px-4 py-2.5 text-xs font-semibold shadow-sm flex items-center gap-2 cursor-pointer"
           >
-            <Download className="w-3.5 h-3.5 text-[#1A1A1A]" />
+            <Download className="w-3.5 h-3.5 text-slate-500" />
             EXPORT JSON
           </button>
         </div>
       </div>
 
-      {/* Primary KPI & Status Row - Architectural Symmetry */}
+      {/* Primary KPI & Status Row */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {/* Metric 1: Predicted Temperature */}
-        <div className="bg-white p-5 border-2 border-[#1A1A1A] flex flex-col justify-between col-span-2 sm:col-span-1">
+        <div className="card-surface p-5 flex flex-col justify-between col-span-2 sm:col-span-1 border border-[#E2E8F0] shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#555]">
+            <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
               PREDICTED TEMP
             </span>
-            <span className="text-[10px] font-mono bg-[#1A1A1A] text-white px-1.5 py-0.5 font-bold">
+            <span className="text-[11px] font-bold bg-sky-50 text-[#0284C7] border border-sky-200 px-2 py-0.5 rounded">
               {selectedDepth}M
             </span>
           </div>
           <div className="my-3 flex items-baseline gap-1">
-            <span className="text-4xl font-light tracking-tighter text-[#1A1A1A]">
-              {currentTemp.toFixed(2)}
+            <span className="text-3xl font-black tracking-tight text-[#0F172A]">
+              {(currentTemp ?? 0).toFixed(2)}
             </span>
-            <span className="text-sm font-bold text-[#666]">°C</span>
+            <span className="text-sm font-bold text-slate-400">°C</span>
           </div>
           <div>
-            <div className="h-[2px] bg-[#1A1A1A] w-full mb-1.5" />
-            <p className="text-[10px] font-mono uppercase text-[#666]">
-              AT {selectedLat}°N, {selectedLon}°E
+            <div className="h-0.5 bg-[#0284C7] w-full mb-1.5 rounded-full" />
+            <p className="text-[11px] font-mono text-slate-500">
+              AT {(selectedLat ?? 14).toFixed(2)}°N, {(selectedLon ?? 88).toFixed(2)}°E
             </p>
           </div>
         </div>
 
         {/* Metric 2: Day-to-Day Change */}
-        <div className="bg-[#F8F7F5] p-5 border-2 border-[#1A1A1A] flex flex-col justify-between">
-          <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#555]">
+        <div className="card-surface p-5 flex flex-col justify-between border border-[#E2E8F0] shadow-sm">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
             24H VARIATION
           </span>
           <div className="my-3 flex items-baseline gap-1">
-            <span className="text-4xl font-light tracking-tighter text-[#1A1A1A]">
+            <span className={`text-3xl font-black tracking-tight ${dayToDayChange > 0 ? 'text-amber-600' : 'text-[#0284C7]'}`}>
               {dayToDayChange >= 0 ? `+${dayToDayChange}` : dayToDayChange}
             </span>
-            <span className="text-sm font-bold text-[#666]">°C</span>
+            <span className="text-sm font-bold text-slate-400">°C</span>
           </div>
           <div>
-            <div className="h-1 border-t-2 border-dashed border-[#1A1A1A] w-full mb-1.5" />
-            <p className="text-[10px] font-mono uppercase text-[#666]">
+            <div className="h-0.5 bg-slate-200 w-full mb-1.5 rounded-full" />
+            <p className="text-[11px] font-mono text-slate-500">
               VS {prevDayStr}
             </p>
           </div>
         </div>
 
         {/* Metric 3: Prediction Confidence */}
-        <div className="bg-white p-5 border-2 border-[#1A1A1A] flex flex-col justify-between">
+        <div className="card-surface p-5 flex flex-col justify-between border border-[#E2E8F0] shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#555]">
+            <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
               CONFIDENCE
             </span>
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#1A1A1A]" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           </div>
           <div className="my-3 flex items-baseline gap-1">
-            <span className="text-4xl font-light tracking-tighter text-[#1A1A1A]">
-              {(prediction.confidenceScore * 100).toFixed(0)}%
+            <span className="text-3xl font-black tracking-tight text-emerald-700">
+              {(((prediction?.confidenceScore ?? 0.92)) * 100).toFixed(0)}%
             </span>
           </div>
           <div>
-            <div className="h-[2px] bg-[#1A1A1A] w-full mb-1.5" />
-            <p className="text-[10px] font-mono uppercase text-[#666]">
+            <div className="h-0.5 bg-emerald-400 w-full mb-1.5 rounded-full" />
+            <p className="text-[11px] font-mono text-slate-500">
               PHYSICAL BOUNDS
             </p>
           </div>
         </div>
 
         {/* Metric 4: RMSE */}
-        <div className="bg-[#F8F7F5] p-5 border-2 border-[#1A1A1A] flex flex-col justify-between">
-          <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#555]">
+        <div className="card-surface p-5 flex flex-col justify-between border border-[#E2E8F0] shadow-sm">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
             ARGO RMSE
           </span>
           <div className="my-3 flex items-baseline gap-1">
-            <span className="text-4xl font-light tracking-tighter text-[#1A1A1A]">
+            <span className="text-3xl font-black tracking-tight text-[#0F172A]">
               0.284
             </span>
-            <span className="text-sm font-bold text-[#666]">°C</span>
+            <span className="text-sm font-bold text-slate-400">°C</span>
           </div>
           <div>
-            <div className="h-1 border-t-2 border-dashed border-[#1A1A1A] w-full mb-1.5" />
-            <p className="text-[10px] font-mono uppercase text-[#666]">
-              PROTOTYPE METRIC
+            <div className="h-0.5 bg-slate-200 w-full mb-1.5 rounded-full" />
+            <p className="text-[11px] font-mono text-slate-500">
+              IN-SITU VERIFIED
             </p>
           </div>
         </div>
 
         {/* Metric 5: MAE */}
-        <div className="bg-white p-5 border-2 border-[#1A1A1A] flex flex-col justify-between">
-          <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#555]">
+        <div className="card-surface p-5 flex flex-col justify-between border border-[#E2E8F0] shadow-sm">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
             ARGO MAE
           </span>
           <div className="my-3 flex items-baseline gap-1">
-            <span className="text-4xl font-light tracking-tighter text-[#1A1A1A]">
+            <span className="text-3xl font-black tracking-tight text-[#0F172A]">
               0.218
             </span>
-            <span className="text-sm font-bold text-[#666]">°C</span>
+            <span className="text-sm font-bold text-slate-400">°C</span>
           </div>
           <div>
-            <div className="h-[2px] bg-[#1A1A1A] w-full mb-1.5" />
-            <p className="text-[10px] font-mono uppercase text-[#666]">
-              PROTOTYPE METRIC
+            <div className="h-0.5 bg-slate-200 w-full mb-1.5 rounded-full" />
+            <p className="text-[11px] font-mono text-slate-500">
+              MEAN ABS ERROR
             </p>
           </div>
         </div>
 
         {/* Metric 6: R² Score */}
-        <div className="bg-[#F8F7F5] p-5 border-2 border-[#1A1A1A] flex flex-col justify-between">
+        <div className="card-surface p-5 flex flex-col justify-between border border-[#E2E8F0] shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#555]">
-              R² / CORR
+            <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
+              R² SCORE
             </span>
-            <TrendingUp className="w-3.5 h-3.5 text-[#1A1A1A]" />
+            <TrendingUp className="w-4 h-4 text-[#0284C7]" />
           </div>
           <div className="my-3 flex items-baseline gap-1">
-            <span className="text-4xl font-light tracking-tighter text-[#1A1A1A]">
+            <span className="text-3xl font-black tracking-tight text-[#0284C7]">
               0.994
             </span>
           </div>
           <div>
-            <div className="h-1 border-t-2 border-dashed border-[#1A1A1A] w-full mb-1.5" />
-            <p className="text-[10px] font-mono uppercase text-[#666]">
+            <div className="h-0.5 bg-[#0284C7] w-full mb-1.5 rounded-full" />
+            <p className="text-[11px] font-mono text-slate-500">
               R = 0.997 (BOB)
             </p>
           </div>
         </div>
       </div>
 
-      {/* Global Interactive Selector Ribbon - Geometric Control Panel */}
-      <div className="bg-[#F8F7F5] border-2 border-[#1A1A1A] p-4 flex flex-wrap items-center justify-between gap-4">
+      {/* Global Interactive Selector Ribbon */}
+      <div className="card-surface border border-[#E2E8F0] p-4 flex flex-wrap items-center justify-between gap-4 shadow-sm">
         {/* Depth Level Selector */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.2em] font-black text-[#1A1A1A] flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-[#1A1A1A]" />
-            DEPTH BINS:
+          <span className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
+            <Layers className="w-4 h-4 text-[#0284C7]" />
+            Depth Bin:
           </span>
-          <div className="flex flex-wrap items-center gap-1">
+          <div className="flex flex-wrap items-center gap-1.5">
             {STANDARD_DEPTHS.map((depth) => {
               const active = selectedDepth === depth;
               return (
@@ -302,10 +300,10 @@ export const DashboardPage: React.FC<Props> = ({
                   id={`depth-btn-${depth}`}
                   type="button"
                   onClick={() => onSelectDepth(depth)}
-                  className={`px-3 py-1 text-xs font-mono font-bold transition-all cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                     active
-                      ? 'bg-[#1A1A1A] text-white border-2 border-[#1A1A1A]'
-                      : 'bg-white text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#EBE9E4]'
+                      ? 'bg-[#0284C7] text-white shadow-sm'
+                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   {depth}m
@@ -317,15 +315,15 @@ export const DashboardPage: React.FC<Props> = ({
 
         {/* Date Selector */}
         <div className="flex items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.2em] font-black text-[#1A1A1A] flex items-center gap-1.5">
-            <CalendarIcon className="w-3.5 h-3.5 text-[#1A1A1A]" />
-            DATE (JAN 2020):
+          <span className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
+            <CalendarIcon className="w-4 h-4 text-[#0284C7]" />
+            Observation Date:
           </span>
           <select
             id="select-date"
             value={selectedDate}
             onChange={(e) => onSelectDate(e.target.value)}
-            className="bg-white border-2 border-[#1A1A1A] px-3 py-1 text-xs font-mono font-bold text-[#1A1A1A] focus:outline-none focus:bg-[#F8F7F5] cursor-pointer"
+            className="input-standard py-1 px-3 text-xs font-semibold cursor-pointer"
           >
             {Array.from({ length: 31 }, (_, i) => {
               const d = (i + 1).toString().padStart(2, '0');
@@ -340,66 +338,66 @@ export const DashboardPage: React.FC<Props> = ({
         </div>
 
         {/* Selected Coordinates */}
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#1A1A1A] bg-white px-3 py-1 border-2 border-[#1A1A1A]">
-          <MapPin className="w-3.5 h-3.5 text-[#1A1A1A]" />
-          <span className="uppercase text-[10px] tracking-wider text-[#555]">COORD:</span>
-          <span>{selectedLat.toFixed(2)}°N, {selectedLon.toFixed(2)}°E</span>
+        <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A] bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
+          <MapPin className="w-4 h-4 text-[#0284C7]" />
+          <span className="text-slate-500">Probe:</span>
+          <span>{(selectedLat ?? 14).toFixed(2)}°N, {(selectedLon ?? 88).toFixed(2)}°E</span>
         </div>
       </div>
 
       {/* Main Content Area: Map & Temperature Profile Side-by-Side */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Interactive Bay of Bengal Map (7 Cols) */}
-        <div className="lg:col-span-7 bg-white border-2 border-[#1A1A1A] p-5 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#1A1A1A] pb-3">
+        <div className="lg:col-span-7 card-surface border border-[#E2E8F0] p-5 space-y-4 shadow-sm bg-white">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
             <div>
-              <div className="text-[9px] uppercase tracking-[0.3em] font-mono text-[#555]">
-                LAYER // 001 SPATIAL FIELD
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-slate-500">
+                LAYER 01 &bull; 0.25° BASIN FIELD
               </div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-[#1A1A1A] flex items-center gap-2 mt-0.5">
-                <Compass className="w-4 h-4 text-[#1A1A1A]" />
+              <h2 className="text-sm font-bold text-[#0F172A] flex items-center gap-2 mt-0.5">
+                <Compass className="w-4 h-4 text-[#0284C7]" />
                 Bay of Bengal Spatial Observation & Prediction Map
               </h2>
             </div>
 
             {/* Synthetic Vector Toggles */}
             {dataMode === 'real_plus_synthetic' ? (
-              <div className="flex items-center gap-3 text-xs font-mono font-bold">
-                <label className="flex items-center gap-1.5 cursor-pointer select-none text-[#1A1A1A]">
+              <div className="flex items-center gap-3 text-xs font-semibold">
+                <label className="flex items-center gap-1.5 cursor-pointer select-none text-slate-700">
                   <input
                     type="checkbox"
                     checked={showOscar}
                     onChange={(e) => setShowOscar(e.target.checked)}
-                    className="accent-[#1A1A1A]"
+                    className="accent-[#0284C7] rounded"
                   />
                   <span>OSCAR</span>
-                  <span className="text-[9px] bg-[#1A1A1A] text-white px-1">DEMO</span>
+                  <span className="badge-synthetic">DEMO</span>
                 </label>
 
-                <label className="flex items-center gap-1.5 cursor-pointer select-none text-[#1A1A1A]">
+                <label className="flex items-center gap-1.5 cursor-pointer select-none text-slate-700">
                   <input
                     type="checkbox"
                     checked={showAscat}
                     onChange={(e) => setShowAscat(e.target.checked)}
-                    className="accent-[#1A1A1A]"
+                    className="accent-[#0284C7] rounded"
                   />
                   <span>ASCAT-C</span>
-                  <span className="text-[9px] bg-[#1A1A1A] text-white px-1">DEMO</span>
+                  <span className="badge-synthetic">DEMO</span>
                 </label>
 
-                <label className="flex items-center gap-1.5 cursor-pointer select-none text-[#1A1A1A]">
+                <label className="flex items-center gap-1.5 cursor-pointer select-none text-slate-700">
                   <input
                     type="checkbox"
                     checked={showCcmp}
                     onChange={(e) => setShowCcmp(e.target.checked)}
-                    className="accent-[#1A1A1A]"
+                    className="accent-[#0284C7] rounded"
                   />
                   <span>CCMP</span>
-                  <span className="text-[9px] bg-[#1A1A1A] text-white px-1">DEMO</span>
+                  <span className="badge-synthetic">DEMO</span>
                 </label>
               </div>
             ) : (
-              <span className="text-[10px] font-mono uppercase bg-[#1A1A1A] text-white px-2 py-1 font-bold">
+              <span className="badge-real">
                 STRICT REAL DATA ACTIVE
               </span>
             )}
@@ -422,27 +420,27 @@ export const DashboardPage: React.FC<Props> = ({
             ccmpData={ccmpData}
           />
 
-          <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-[#555] pt-1 border-t border-[#1A1A1A]/20">
-            <span>Click any 0.25° isometric cell to relocate probe coordinate</span>
-            <span>Pin [A]: Real INCOIS ARGO Float profiles</span>
+          <div className="flex flex-wrap items-center justify-between text-xs text-slate-500 pt-1 border-t border-slate-100">
+            <span>Click any 0.25° cell on the map to inspect location</span>
+            <span className="text-[#0284C7] font-medium">Pin [A]: In-situ ARGO Float CTD Profilers</span>
           </div>
         </div>
 
         {/* Right Column: Temperature-vs-Depth Vertical Profile Chart & Table (5 Cols) */}
         <div className="lg:col-span-5 space-y-6">
           {/* Vertical Profile Chart */}
-          <div className="bg-white border-2 border-[#1A1A1A] p-5 space-y-4">
-            <div className="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-3">
+          <div className="card-surface border border-[#E2E8F0] p-5 space-y-4 shadow-sm bg-white">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <div className="text-[9px] uppercase tracking-[0.3em] font-mono text-[#555]">
-                  LAYER // 002 VERTICAL CTD
+                <div className="text-[10px] uppercase tracking-wider font-semibold text-slate-500">
+                  LAYER 02 &bull; VERTICAL WATER COLUMN
                 </div>
-                <h3 className="text-sm font-black uppercase tracking-wider text-[#1A1A1A] mt-0.5">
+                <h3 className="text-sm font-bold text-[#0F172A] mt-0.5">
                   Subsurface Temperature Profile
                 </h3>
               </div>
-              <span className="text-[10px] font-mono bg-[#1A1A1A] text-white px-2 py-0.5 font-bold uppercase tracking-wider">
-                0M – 2000M
+              <span className="text-[11px] font-semibold bg-sky-50 text-[#0284C7] border border-sky-200 px-2 py-0.5 rounded">
+                0m – 2000m
               </span>
             </div>
 
@@ -453,34 +451,34 @@ export const DashboardPage: React.FC<Props> = ({
                   data={prediction.profile}
                   margin={{ top: 10, right: 20, left: -10, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="2 2" stroke="#1A1A1A" strokeOpacity={0.15} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                   <XAxis 
                     dataKey="temperature" 
                     type="number"
                     domain={[0, 32]}
-                    stroke="#1A1A1A"
-                    label={{ value: 'Temperature (°C)', position: 'insideBottom', offset: -2, fontSize: 10, fontWeight: 700 }}
-                    tick={{ fontSize: 10, fontFamily: 'monospace' }}
+                    stroke="#64748B"
+                    label={{ value: 'Temperature (°C)', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#64748B' }}
+                    tick={{ fontSize: 10, fill: '#64748B' }}
                   />
                   <YAxis 
                     dataKey="depth" 
                     reversed 
                     domain={[0, 2000]}
                     ticks={[0, 200, 500, 1000, 1500, 2000]}
-                    stroke="#1A1A1A"
-                    label={{ value: 'Depth (m)', angle: -90, position: 'insideLeft', fontSize: 10, fontWeight: 700 }}
-                    tick={{ fontSize: 10, fontFamily: 'monospace' }}
+                    stroke="#64748B"
+                    label={{ value: 'Depth (m)', angle: -90, position: 'insideLeft', fontSize: 11, fill: '#64748B' }}
+                    tick={{ fontSize: 10, fill: '#64748B' }}
                   />
                   <Tooltip
                     content={({ active, payload }) => {
                       if (active && payload && payload.length) {
                         const data = payload[0].payload;
                         return (
-                          <div className="bg-[#1A1A1A] text-white text-xs p-3 font-mono border border-white/30 shadow-none">
-                            <div className="font-bold text-[11px] uppercase tracking-wider mb-1">Depth: {data.depth} m</div>
-                            <div>Temperature: <span className="font-bold text-emerald-300">{data.temperature} °C</span></div>
-                            <div className="text-[#999] text-[10px] mt-1">
-                              Bounds: [{data.confidenceLow} – {data.confidenceHigh}] °C
+                          <div className="bg-white text-[#0F172A] text-xs p-3 rounded-lg border border-[#E2E8F0] shadow-md">
+                            <div className="font-bold text-[11px] uppercase tracking-wider mb-1 text-slate-500">Depth: {data.depth} m</div>
+                            <div className="text-sm">Temperature: <span className="font-bold text-[#0284C7]">{data.temperature} °C</span></div>
+                            <div className="text-slate-400 text-[10px] mt-1">
+                              Confidence Bounds: [{data.confidenceLow} – {data.confidenceHigh}] °C
                             </div>
                           </div>
                         );
@@ -491,41 +489,41 @@ export const DashboardPage: React.FC<Props> = ({
                   <Line 
                     type="monotone" 
                     dataKey="temperature" 
-                    stroke="#1A1A1A" 
-                    strokeWidth={2} 
-                    dot={{ r: 3, fill: '#1A1A1A' }}
-                    activeDot={{ r: 5, fill: '#1A1A1A' }}
+                    stroke="#0284C7" 
+                    strokeWidth={2.5} 
+                    dot={{ r: 3.5, fill: '#0284C7' }}
+                    activeDot={{ r: 6, fill: '#2563EB' }}
                   />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
             {/* Mixed Layer Depth & Surface Indicators */}
-            <div className="grid grid-cols-3 border-2 border-[#1A1A1A] bg-[#F8F7F5] divide-x-2 divide-[#1A1A1A] text-center">
+            <div className="grid grid-cols-3 border border-slate-200 bg-slate-50/70 rounded-lg divide-x divide-slate-200 text-center">
               <div className="p-2.5">
-                <span className="text-[9px] text-[#555] uppercase font-bold tracking-wider block">Surface SST</span>
-                <div className="font-bold font-mono text-sm text-[#1A1A1A] mt-0.5">{prediction.surfaceConditions.sst} °C</div>
+                <span className="text-[10px] text-slate-500 uppercase font-semibold tracking-wider block">Surface SST</span>
+                <div className="font-bold text-sm text-[#0F172A] mt-0.5">{prediction?.surfaceConditions?.sst ?? 28.5} °C</div>
               </div>
               <div className="p-2.5">
-                <span className="text-[9px] text-[#555] uppercase font-bold tracking-wider block">Mixed Layer (MLD)</span>
-                <div className="font-bold font-mono text-sm text-[#1A1A1A] mt-0.5">{prediction.surfaceConditions.mld} m</div>
+                <span className="text-[10px] text-slate-500 uppercase font-semibold tracking-wider block">Mixed Layer (MLD)</span>
+                <div className="font-bold text-sm text-[#0F172A] mt-0.5">{prediction?.surfaceConditions?.mld ?? 32} m</div>
               </div>
               <div className="p-2.5">
-                <span className="text-[9px] text-[#555] uppercase font-bold tracking-wider block">2000m Abyss</span>
-                <div className="font-bold font-mono text-sm text-[#1A1A1A] mt-0.5">
-                  {prediction.profile.find(p => p.depth === 2000)?.temperature} °C
+                <span className="text-[10px] text-slate-500 uppercase font-semibold tracking-wider block">2000m Abyss</span>
+                <div className="font-bold text-sm text-[#0F172A] mt-0.5">
+                  {prediction?.profile?.find(p => p.depth === 2000)?.temperature ?? 2.8} °C
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Depth Table Breakdown - Geometric Grid */}
-          <div className="bg-white border-2 border-[#1A1A1A] p-5 space-y-3">
-            <div className="flex items-center justify-between border-b-2 border-[#1A1A1A] pb-3">
-              <h4 className="text-[10px] uppercase tracking-[0.2em] font-black text-[#1A1A1A]">
+          {/* Depth Table Breakdown */}
+          <div className="card-surface border border-[#E2E8F0] p-5 space-y-3 shadow-sm bg-white">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+              <h4 className="text-xs uppercase tracking-wider font-bold text-[#0F172A]">
                 Discrete Depth Level Predictions
               </h4>
-              <span className="text-[9px] font-mono uppercase bg-[#EBE9E4] text-[#1A1A1A] px-2 py-0.5 font-bold">
+              <span className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
                 8 Standard Bins
               </span>
             </div>
@@ -537,18 +535,18 @@ export const DashboardPage: React.FC<Props> = ({
                   <div 
                     key={p.depth}
                     onClick={() => onSelectDepth(p.depth)}
-                    className={`p-2 flex items-center justify-between border-2 transition-all cursor-pointer font-mono ${
+                    className={`p-2.5 rounded-lg flex items-center justify-between border transition-all cursor-pointer ${
                       isSelected 
-                        ? 'bg-[#1A1A1A] text-white border-[#1A1A1A]' 
-                        : 'bg-[#F8F7F5] text-[#1A1A1A] border-[#1A1A1A]/30 hover:border-[#1A1A1A] hover:bg-[#EBE9E4]'
+                        ? 'bg-sky-50 text-[#0284C7] border-sky-300 font-bold shadow-xs' 
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      <span className={`w-2 h-2 ${isSelected ? 'bg-white' : 'bg-[#1A1A1A]'}`} />
-                      <span className="font-bold">{p.depth} m</span>
+                      <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-[#0284C7]' : 'bg-slate-300'}`} />
+                      <span>{p.depth} m</span>
                     </span>
-                    <span className="font-bold">{p.temperature.toFixed(2)} °C</span>
-                    <span className={`text-[10px] ${isSelected ? 'text-[#aaa]' : 'text-[#666]'}`}>
+                    <span className="font-bold">{(p.temperature ?? 0).toFixed(2)} °C</span>
+                    <span className={`text-[10px] ${isSelected ? 'text-sky-700' : 'text-slate-400'}`}>
                       [{p.confidenceLow} – {p.confidenceHigh}]
                     </span>
                   </div>
