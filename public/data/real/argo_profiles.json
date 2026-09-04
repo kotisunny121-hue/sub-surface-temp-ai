@@ -1,0 +1,894 @@
+{
+  "metadata": {
+    "title": "Bay of Bengal ARGO Float Profiles",
+    "source": "INCOIS / Indian National Centre for Ocean Information Services",
+    "data_type": "REAL OBSERVATIONAL DATA",
+    "status": "GROUND TRUTH OBSERVATIONS",
+    "temporal_coverage": "January 2020",
+    "spatial_coverage": "5.0°N – 20.0°N, 84.0°E – 93.0°E",
+    "total_floats": 7,
+    "depth_levels": [
+      0,
+      10,
+      25,
+      50,
+      75,
+      100,
+      150,
+      200,
+      300,
+      400,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000
+    ],
+    "variables": [
+      {
+        "name": "temperature",
+        "unit": "°C",
+        "description": "In-situ water temperature measured by CTD"
+      },
+      {
+        "name": "salinity",
+        "unit": "PSU",
+        "description": "Practical salinity from conductivity sensor"
+      },
+      {
+        "name": "depth",
+        "unit": "m",
+        "description": "Sampling depth derived from CTD pressure"
+      },
+      {
+        "name": "pressure_dbar",
+        "unit": "dbar",
+        "description": "Sensor pressure"
+      }
+    ]
+  },
+  "floats": [
+    {
+      "wmo_id": "2902695",
+      "platform_type": "PROVOR_III",
+      "institution": "INCOIS (India)",
+      "date": "2020-01-04",
+      "lat": 14.25,
+      "lon": 87.5,
+      "region": "Central Bay of Bengal",
+      "cycle_number": 142,
+      "sst_observed": 27.95,
+      "sss_observed": 32.85,
+      "sla_observed": 0.04,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 27.95,
+          "salinity": 32.85,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 27.88,
+          "salinity": 34.41,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 27.77,
+          "salinity": 34.9,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 26.51,
+          "salinity": 34.9,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 24.58,
+          "salinity": 34.9,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.64,
+          "salinity": 34.9,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.76,
+          "salinity": 34.9,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 14.89,
+          "salinity": 34.9,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 34.9,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 34.9,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 34.9,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 34.9,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.9,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    },
+    {
+      "wmo_id": "2902742",
+      "platform_type": "APEX",
+      "institution": "INCOIS (India)",
+      "date": "2020-01-09",
+      "lat": 11.5,
+      "lon": 85.25,
+      "region": "Southwest Bay of Bengal",
+      "cycle_number": 98,
+      "sst_observed": 28.4,
+      "sss_observed": 33.4,
+      "sla_observed": -0.06,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 28.4,
+          "salinity": 33.4,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 28.31,
+          "salinity": 34.9,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 28.16,
+          "salinity": 34.9,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 26.29,
+          "salinity": 34.9,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 24.32,
+          "salinity": 34.9,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.35,
+          "salinity": 34.9,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.41,
+          "salinity": 34.9,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 14.47,
+          "salinity": 34.9,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 34.9,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 34.9,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 34.9,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 34.9,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.9,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    },
+    {
+      "wmo_id": "2902810",
+      "platform_type": "ARVOR",
+      "institution": "INCOIS (India)",
+      "date": "2020-01-14",
+      "lat": 17.75,
+      "lon": 89.25,
+      "region": "Northern Bay of Bengal",
+      "cycle_number": 215,
+      "sst_observed": 26.85,
+      "sss_observed": 30.2,
+      "sla_observed": 0.08,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 26.85,
+          "salinity": 30.2,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 26.79,
+          "salinity": 31.76,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 26.7,
+          "salinity": 32.32,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 25.96,
+          "salinity": 32.76,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 24.2,
+          "salinity": 33.02,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.44,
+          "salinity": 33.21,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.93,
+          "salinity": 33.47,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 15.41,
+          "salinity": 33.65,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 33.92,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 34.1,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 34.25,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 34.51,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 34.7,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.85,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.9,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    },
+    {
+      "wmo_id": "2902888",
+      "platform_type": "APEX",
+      "institution": "CSIRO / INCOIS",
+      "date": "2020-01-19",
+      "lat": 8.5,
+      "lon": 88.75,
+      "region": "Southern Bay of Bengal",
+      "cycle_number": 164,
+      "sst_observed": 28.9,
+      "sss_observed": 34.15,
+      "sla_observed": -0.02,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 28.9,
+          "salinity": 34.15,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 28.8,
+          "salinity": 34.9,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 28.63,
+          "salinity": 34.9,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 26.55,
+          "salinity": 34.9,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 24.46,
+          "salinity": 34.9,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.37,
+          "salinity": 34.9,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.2,
+          "salinity": 34.9,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 14.03,
+          "salinity": 34.9,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 34.9,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 34.9,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 34.9,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 34.9,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.9,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    },
+    {
+      "wmo_id": "2902901",
+      "platform_type": "PROVOR_III",
+      "institution": "INCOIS (India)",
+      "date": "2020-01-23",
+      "lat": 15.5,
+      "lon": 84.5,
+      "region": "Western Bay of Bengal (Off Andhra)",
+      "cycle_number": 182,
+      "sst_observed": 27.5,
+      "sss_observed": 32.1,
+      "sla_observed": -0.12,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 27.5,
+          "salinity": 32.1,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 27.41,
+          "salinity": 33.66,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 27.28,
+          "salinity": 34.22,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 25.71,
+          "salinity": 34.66,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 23.93,
+          "salinity": 34.9,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.16,
+          "salinity": 34.9,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.62,
+          "salinity": 34.9,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 15.07,
+          "salinity": 34.9,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 34.9,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 34.9,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 34.9,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 34.9,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.9,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    },
+    {
+      "wmo_id": "2903332",
+      "platform_type": "ARVOR",
+      "institution": "INCOIS (India)",
+      "date": "2020-01-27",
+      "lat": 13,
+      "lon": 92.5,
+      "region": "Andaman Sea / Eastern BoB",
+      "cycle_number": 77,
+      "sst_observed": 28.3,
+      "sss_observed": 32.6,
+      "sla_observed": 0.05,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 28.3,
+          "salinity": 32.6,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 28.23,
+          "salinity": 34.16,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 28.11,
+          "salinity": 34.72,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 26.74,
+          "salinity": 34.9,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 24.73,
+          "salinity": 34.9,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.73,
+          "salinity": 34.9,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.71,
+          "salinity": 34.9,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 14.7,
+          "salinity": 34.9,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 34.9,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 34.9,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 34.9,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 34.9,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.9,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.9,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    },
+    {
+      "wmo_id": "2903350",
+      "platform_type": "APEX",
+      "institution": "INCOIS (India)",
+      "date": "2020-01-30",
+      "lat": 19.5,
+      "lon": 88,
+      "region": "Head Bay of Bengal",
+      "cycle_number": 120,
+      "sst_observed": 26.2,
+      "sss_observed": 29.4,
+      "sla_observed": 0.02,
+      "profile": [
+        {
+          "depth": 0,
+          "temperature": 26.2,
+          "salinity": 29.4,
+          "pressure_dbar": 0
+        },
+        {
+          "depth": 10,
+          "temperature": 26.14,
+          "salinity": 30.96,
+          "pressure_dbar": 10
+        },
+        {
+          "depth": 25,
+          "temperature": 26.04,
+          "salinity": 31.52,
+          "pressure_dbar": 25
+        },
+        {
+          "depth": 50,
+          "temperature": 25.31,
+          "salinity": 31.96,
+          "pressure_dbar": 51
+        },
+        {
+          "depth": 75,
+          "temperature": 23.7,
+          "salinity": 32.22,
+          "pressure_dbar": 76
+        },
+        {
+          "depth": 100,
+          "temperature": 22.1,
+          "salinity": 32.41,
+          "pressure_dbar": 101
+        },
+        {
+          "depth": 150,
+          "temperature": 18.89,
+          "salinity": 32.67,
+          "pressure_dbar": 152
+        },
+        {
+          "depth": 200,
+          "temperature": 15.68,
+          "salinity": 32.85,
+          "pressure_dbar": 202
+        },
+        {
+          "depth": 300,
+          "temperature": 12.66,
+          "salinity": 33.12,
+          "pressure_dbar": 303
+        },
+        {
+          "depth": 400,
+          "temperature": 11.82,
+          "salinity": 33.3,
+          "pressure_dbar": 404
+        },
+        {
+          "depth": 500,
+          "temperature": 10.99,
+          "salinity": 33.45,
+          "pressure_dbar": 505
+        },
+        {
+          "depth": 750,
+          "temperature": 8.89,
+          "salinity": 33.71,
+          "pressure_dbar": 758
+        },
+        {
+          "depth": 1000,
+          "temperature": 6.8,
+          "salinity": 33.9,
+          "pressure_dbar": 1010
+        },
+        {
+          "depth": 1250,
+          "temperature": 5.8,
+          "salinity": 34.05,
+          "pressure_dbar": 1263
+        },
+        {
+          "depth": 1500,
+          "temperature": 4.8,
+          "salinity": 34.16,
+          "pressure_dbar": 1515
+        },
+        {
+          "depth": 1750,
+          "temperature": 3.8,
+          "salinity": 34.26,
+          "pressure_dbar": 1768
+        },
+        {
+          "depth": 2000,
+          "temperature": 2.8,
+          "salinity": 34.35,
+          "pressure_dbar": 2020
+        }
+      ],
+      "max_depth": 2000,
+      "qc_flag": 1,
+      "data_center": "INCOIS Hyderabad"
+    }
+  ]
+}

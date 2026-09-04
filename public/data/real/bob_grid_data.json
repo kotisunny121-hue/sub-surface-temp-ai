@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "title": "Bay of Bengal Multi-Satellite Observation Baseline",
+    "status": "REAL DATA SOURCES",
+    "region": "Bay of Bengal (5.0°N – 22.0°N, 80.0°E – 100.0°E)",
+    "grid_resolution": "0.25° × 0.25°",
+    "temporal_coverage": "2020-01-01 to 2020-01-31",
+    "datasets": {
+      "ostia_sst": {
+        "name": "OSTIA Global Sea Surface Temperature",
+        "provider": "UK Met Office / Copernicus Marine (CMEMS)",
+        "variable": "analysed_sst",
+        "unit": "°C",
+        "range": "25.8°C to 29.6°C",
+        "spatial_resolution": "0.05° regridded to 0.25°"
+      },
+      "multi_obs_sss": {
+        "name": "Multi-Observation Global Sea Surface Salinity",
+        "provider": "Copernicus Marine / SMOS + SMAP satellite + In-situ",
+        "variable": "sos",
+        "unit": "PSU",
+        "range": "28.2 PSU to 34.6 PSU",
+        "spatial_resolution": "0.25°"
+      },
+      "ocean_sla": {
+        "name": "Global Ocean Gridded Sea Surface Height and SLA",
+        "provider": "DUACS / CMEMS Multi-satellite altimeter",
+        "variable": "sla / adt",
+        "unit": "m",
+        "range": "-0.18 m to +0.22 m",
+        "spatial_resolution": "0.25°"
+      }
+    }
+  },
+  "statistics": {
+    "total_grid_points": 5589,
+    "ocean_points": 3942,
+    "land_masked_points": 1647,
+    "mean_sst": 28.14,
+    "mean_sss": 32.48,
+    "mean_sla": 0.02
+  }
+}
